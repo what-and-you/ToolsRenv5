@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # Direktori untuk menyimpan file
-OUTPUT_DIR="/var/.hidden_ip_data"
+OUTPUT_DIR="/sdcard"
 # Nama file untuk menyimpan alamat IP
 OUTPUT_FILE="$OUTPUT_DIR/ip_addresses.txt"
 
-# Membuat direktori jika belum ada
+# Memastikan direktori /sdcard ada
 if [ ! -d "$OUTPUT_DIR" ]; then
-  mkdir -p "$OUTPUT_DIR"
+  echo "Direktori $OUTPUT_DIR tidak ada. Silakan periksa dan buat direktori tersebut."
+  exit 1
 fi
 
 # Mendapatkan alamat IP lokal
@@ -19,5 +20,7 @@ public_ip=$(curl -s ifconfig.me)
 # Alternatif: public_ip=$(curl -s ipinfo.io/ip)
 
 # Menyimpan hasil ke file
-echo "Alamat IP lokal: $local_ip" > "$OUTPUT_FILE"
-echo "Alamat IP publik: $public_ip" >> "$OUTPUT_FILE"
+echo "Alamat IP lokal Anda adalah: $local_ip" > "$OUTPUT_FILE"
+echo "Alamat IP publik Anda adalah: $public_ip" >> "$OUTPUT_FILE"
+
+echo "Informasi alamat IP telah disimpan di $OUTPUT_FILE"
