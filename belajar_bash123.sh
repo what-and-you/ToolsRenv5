@@ -122,7 +122,7 @@ pkg install python
 pkg install python2
 git clone https://github.com/what-and-you/bahan-spam.git
 sleep 1.5
-   echo -e  "${red}berhasil install package!!"
+   echo -e  "${green}berhasil install package!!"
   echo "Tekan enter untuk kembali ke menu utama"
   read
 }
@@ -138,8 +138,10 @@ else
   echo "$name" > "$login_file"
   sleep 1.5
   clear
+  sleep 1
   echo "Selamat datang, $name!"
 sleep 2
+git pull
 fi
 
 # Loop utama untuk menampilkan menu dan menangani pilihan
