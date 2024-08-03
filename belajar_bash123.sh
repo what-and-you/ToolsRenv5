@@ -8,8 +8,20 @@ blue='\033[1;34m'
 reset='\033[0m'
 orange='\33[38;5;208m'
 
-# Nama file untuk menyimpan nama pengguna
-login_file=".login_user"
+#!/bin/bash
+
+# File untuk memeriksa status registrasi
+REGISTRATION_FILE="/sdcard/registration_status.txt"
+
+# Memeriksa apakah pengguna sudah terdaftar
+if [ ! -f "$REGISTRATION_FILE" ]; then
+  echo "Anda belum terdaftar. Silakan lakukan registrasi terlebih dahulu dengan menjalankan script register.sh."
+  exit 1
+fi
+
+# Melanjutkan ke fungsi utama script
+echo "Selamat datang! Anda sudah terdaftar."
+# Tambahkan fungsi utama script Anda di sini
 
 function show_menu {
 clear
@@ -157,22 +169,6 @@ sleep 1.5
   echo "Tekan enter untuk kembali ke menu utama"
   read
 }
-
-# Memeriksa apakah file login sudah ada
-if [ -f "$login_file" ]; then
-  name=$(cat "$login_file")
-  echo "Selamat datang kembali, $name!"
-sleep 2
-else
-  echo "Silakan masukkan nama Anda: "
-  read name
-  echo "$name" > "$login_file"
-sleep 1.5
-clear
-  echo "Selamat datang, $name!"
-sleep 2
-git pull
-fi
 
 # Loop utama untuk menampilkan menu dan menangani pilihan
 while true; do
