@@ -114,7 +114,9 @@ sleep 1.5
 
 #bebas aja yang penting happy
 function install_package  {
-  clear
+  clear 1
+echo "installing package...."
+  sleep 1.5
 pkg update
 pkg upgrade
 pkg install git
