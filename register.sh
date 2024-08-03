@@ -8,7 +8,6 @@ register_user() {
   read -p "Masukkan nama: " name
   read -p "Masukkan nomor telepon: " phone_number
   echo "Nama: $name" > "$REGISTRATION_FILE"
-  echo "Nomor Telepon: $phone_number" >> "$REGISTRATION_FILE"
   echo "Registrasi berhasil. Anda sekarang dapat mengakses script utama."
 }
 
