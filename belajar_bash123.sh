@@ -41,9 +41,7 @@ echo "
 
 
           |=================================================|
-          |Alamat IP lokal Anda adalah: $local_ip" > "$OUTPUT_FILE|
-          |Alamat IP publik Anda adalah: $public_ip" >> "$OUTPUT_FILE|
-          |status :ᴘʀᴇᴍɪᴜᴍ                                  |
+          |status ;ᴘʀᴇᴍɪᴜᴍ                                  |
           |𝙾𝚄𝚃𝙷𝙾𝚁: 𝚁𝙴𝙽9999                                  |
           |version:0.5                                      |
           |=================================================|
