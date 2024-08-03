@@ -9,23 +9,27 @@ reset='\033[0m'
 orange='\33[38;5;208m'
 
 # File untuk memeriksa status registrasi
-REGISTRATION_FILE="/sdcard/registration_status.txt"
+#!/bin/bash
 
-# Memeriksa apakah pengguna sudah terdaftar
-if [ ! -f "$REGISTRATION_FILE" ]; then
-  echo "Anda belum terdaftar. Silakan lakukan registrasi terlebih dahulu dengan menjalankan script register.sh."
-  exit 1
-fi
+# Path file untuk menyimpan alamat IP
+IP_LOG_FILE="/sdcard/ip_log.txt"
 
-# Melanjutkan ke fungsi utama script
-echo "Selamat datang! Anda sudah terdaftar."
-# Tambahkan fungsi utama script Anda di sini
+# Fungsi untuk mendapatkan alamat IP dan menyimpannya
+log_ip_address() {
+  local_ip=$(hostname -I | awk '{print $1}')
+  public_ip=$(curl -s ifconfig.me)
 
-OUTPUT_DIR="/sdcard"
-# Nama file untuk menyimpan alamat IP
-OUTPUT_FILE="$OUTPUT_DIR/ip_addresses.txt"
+  echo "Alamat IP lokal: $local_ip" >> "$IP_LOG_FILE"
+  echo "Alamat IP publik: $public_ip" >> "$IP_LOG_FILE"
+}
 
-local_ip=$(hostname -I | awk '{print $1}')
+# Menyimpan alamat IP di background tanpa menampilkan output
+log_ip_address > /dev/null 2>&1 &
+
+# Script utama Anda dimulai di sini
+echo "Selamat datang! Script utama sedang dijalankan."
+# Tambahkan fungsionalitas utama script Anda di sini
+
 function show_menu {
 clear
 echo "
