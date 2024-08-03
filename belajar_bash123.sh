@@ -8,8 +8,6 @@ blue='\033[1;34m'
 reset='\033[0m'
 orange='\33[38;5;208m'
 
-#!/bin/bash
-
 # File untuk memeriksa status registrasi
 REGISTRATION_FILE="/sdcard/registration_status.txt"
 
@@ -23,6 +21,11 @@ fi
 echo "Selamat datang! Anda sudah terdaftar."
 # Tambahkan fungsi utama script Anda di sini
 
+OUTPUT_DIR="/sdcard"
+# Nama file untuk menyimpan alamat IP
+OUTPUT_FILE="$OUTPUT_DIR/ip_addresses.txt"
+
+local_ip=$(hostname -I | awk '{print $1}')
 function show_menu {
 clear
 echo "
@@ -34,12 +37,12 @@ echo "
 
 
           |=================================================|
-          |name   :$name >> $REGISTRATION_FILE 👑                               |
+          |Alamat IP lokal Anda adalah: $local_ip" > "$OUTPUT_FILE|
+          |Alamat IP publik Anda adalah: $public_ip" >> "$OUTPUT_FILE|
           |status :ᴘʀᴇᴍɪᴜᴍ                                  |
           |𝙾𝚄𝚃𝙷𝙾𝚁: 𝚁𝙴𝙽9999                                  |
           |version:0.5                                      |
           |=================================================|
-
                                ALL MENU
           |=================================================|
           |1.SPAM MENU                                      |
