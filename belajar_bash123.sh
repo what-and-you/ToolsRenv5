@@ -136,6 +136,8 @@ else
   echo "Silakan masukkan nama Anda: "
   read name
   echo "$name" > "$login_file"
+  sleep 1.5
+  clear
   echo "Selamat datang, $name!"
 sleep 2
 fi
