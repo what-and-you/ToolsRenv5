@@ -92,6 +92,8 @@ def virus_menu():
     os.system('bash bahan_virus.sh')
 
 def hacker_menu():
+    os. system('clear') 
+    os.chdir('bahan_virus')
     os.system('bash hacker_menu.sh')
 
 def display_message():
