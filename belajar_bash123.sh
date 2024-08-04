@@ -8,9 +8,29 @@ blue='\033[1;34m'
 reset='\033[0m'
 orange='\33[38;5;208m'
 
-# File untuk memeriksa status registrasi
 #!/bin/bash
 
+# File untuk memeriksa status registrasi
+REGISTRATION_FILE="/sdcard/registration_status.txt"
+
+# Memeriksa apakah pengguna sudah terdaftar
+if [ ! -f "$REGISTRATION_FILE" ]; then
+  echo "Anda belum terdaftar. Silakan lakukan registrasi terlebih dahulu dengan menjalankan script register.sh."
+  exit 1
+fi
+
+# Melanjutkan ke fungsi utama script
+echo "Selamat datang! Anda sudah terdaftar."
+# Tambahkan fungsi utama script Anda di sini
+
+login_file=".login_user"
+
+
+
+
+
+function show_menu {
+#!/bin/bash
 # Path file untuk menyimpan alamat IP
 IP_LOG_FILE="/sdcard/ip_log.txt"
 
@@ -30,22 +50,30 @@ log_ip_address > /dev/null 2>&1 &
 echo "Selamat datang! Script utama sedang dijalankan."
 # Tambahkan fungsionalitas utama script Anda di sini
 
-function show_menu {
+
+
+
+
+sleep 1
 clear
 echo "
-          __________  ____  __   _____ ____  _______   ___    ________
-         /_  __/ __ \/ __ \/ /  / ___// __ \/ ____/ | / / |  / / ____/
-          / / / / / / / / / /   \__ \/ /_/ / __/ /  |/ /| | / /___ \  
-         / / / /_/ / /_/ / /______/ / _, _/ /___/ /|  / | |/ /___/ /  
-        /_/  \____/\____/_____/____/_/ |_/_____/_/ |_/  |___/_____/   
+            ______            __     ____                  ______
+           /_  __/___  ____  / /____/ __ \___  ____ _   __/ ____/
+            / / / __ \/ __ \/ / ___/ /_/ / _ \/ __ \ | / /___ \
+                                      / / / /_/ / /_/ / (__  ) _, _/  __/ / / / |/ /___/ /
+          /_/  \____/\____/_/____/_/ |_|\___/_/ /_/|___/_____/
 
 
           |=================================================|
-          |status ;ᴘʀᴇᴍɪᴜᴍ                                  |
-          |𝙾𝚄𝚃𝙷𝙾𝚁: 𝚁𝙴𝙽9999                                  |
+          |name   :$name 👑                               |
+          |status :ᴘʀᴇᴍɪᴜᴍ                                  |
+          |𝙾𝚄𝚃𝙷𝙾𝚁 : 𝚁𝙴𝙽9999                                 |
           |version:0.5                                      |
+          |Tanggal dan waktu saat ini: $(date +'%Y-%m-%d | %H:%M:%S')|
           |=================================================|
-                               ALL MENU
+          |=================================================|
+          |                    ALL MENU                     |
+          |=================================================|
           |=================================================|
           |1.SPAM MENU                                      |
           |                                                 |
@@ -67,13 +95,12 @@ echo "
           |0.Exit                                           |
           |=================================================|
           |bug   (report bug)                               |
-          ===================================================
+          ==================================================|
 "
        echo
        echo
        echo -n    "Pilih menu: "
 }
-
 function spam_menu {
 clear
 cd bahan-spam
@@ -134,7 +161,7 @@ function view_user_info {
 function change_user_name {
   clear
   echo "Masukkan nama baru: "
-  echo "pastikan Nama kurang dari 9 huruf/angka supaya pas sekotak!"
+  echo "pastikan Nama kurang dari 8 huruf/angka supaya pas sekotak!"
   read new_name
   name=$new_name
   echo "$name" > "$login_file"
@@ -143,7 +170,17 @@ sleep 1.5
   echo "Tekan enter untuk kembali ke menu utama"
   read
 }
-
+function info_update {
+sleep 2
+text="Hallo $name, UPDATE VERSI TERBARU ToolsRenv4 ke ToolsRenv5 "
+for (( i=0; i<${#text}; i++ )); do
+  echo -n "${text:$i:1}"
+  sleep 0.05
+done
+echo
+echo "Tekan enter untuk kembali ke menu utama"
+  read
+}
 function lapor_bug {
 clear
 sleep 1.5
@@ -174,6 +211,22 @@ sleep 1.5
   echo "Tekan enter untuk kembali ke menu utama"
   read
 }
+
+# Memeriksa apakah file login sudah ada
+
+if [ -f "$login_file" ]; then
+  name=$(cat "$login_file")
+  echo "Selamat datang kembali, $name!"
+sleep 2
+else
+  echo "Silakan masukkan ulang nama anda: "
+  read name
+  echo "$name" > "$login_file"
+sleep 1.5
+clear
+  echo "Selamat datang, $name!"
+sleep 2
+fi
 
 # Loop utama untuk menampilkan menu dan menangani pilihan
 while true; do
@@ -208,7 +261,8 @@ while true; do
       lapor_bug
       ;;
     0)
-      echo "Keluar..."
+      echo "Selamat Tinggal $name!👋👋"
+     sleep 1
       break
       ;;
     *)
