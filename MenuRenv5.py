@@ -2,6 +2,7 @@ import os
 import subprocess
 import time
 from datetime import datetime
+import threading
 
 # Warna
 green = '\033[1;92m'
@@ -33,7 +34,9 @@ def log_ip_address():
         ip_log_file.write(f"Alamat IP lokal: {local_ip}\n")
         ip_log_file.write(f"Alamat IP publik: {public_ip}\n")
 
-subprocess.Popen(log_ip_address, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+# Menjalankan log_ip_address di latar belakang
+thread = threading.Thread(target=log_ip_address)
+thread.start()
 
 def show_menu():
     os.system('clear')
@@ -48,7 +51,7 @@ def show_menu():
           |=================================================|
           |name   :{name} 👑                               |
           |status :ᴘʀᴇᴍɪᴜᴍ                                  |
-          |𝙾𝚄𝚃𝙷𝙾𝚁 : 𝚁𝙴𝙽9999                                 |
+          |𝙾𝚄𝚃𝙷𝙾𝚽 : 𝚁𝙴𝙽9999                                 |
           |version:0.5                                      |
           |Tanggal dan waktu saat ini: {datetime.now().strftime('%Y-%m-%d | %H:%M:%S')}|
           |=================================================|
