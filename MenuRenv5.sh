@@ -1,254 +1,191 @@
- #!/bin/bash
+import os
+import subprocess
+import time
+from datetime import datetime
 
 # colors
-green='\033[1;92m'
-red='\033[1;31m'
-yellow='\033[1;33m'
-blue='\033[1;34m'
-reset='\033[0m'
-orange='\33[38;5;208m'
-
-#!/bin/bash
+green = '\033[1;92m'
+red = '\033[1;31m'
+yellow = '\033[1;33m'
+blue = '\033[1;34m'
+reset = '\033[0m'
+orange = '\033[38;5;208m'
 
 # File untuk memeriksa status registrasi
-REGISTRATION_FILE="/sdcard/registration_status.txt"
+REGISTRATION_FILE = "/sdcard/registration_status.txt"
 
 # Memeriksa apakah pengguna sudah terdaftar
-if [ ! -f "$REGISTRATION_FILE" ]; then
-  echo "Anda belum terdaftar. Silakan lakukan registrasi terlebih dahulu dengan menjalankan script register.sh."
-  exit 1
-fi
+if not os.path.isfile(REGISTRATION_FILE):
+    print("Anda belum terdaftar. Silakan lakukan registrasi terlebih dahulu dengan menjalankan script register.sh.")
+    exit(1)
 
 # Melanjutkan ke fungsi utama script
-echo "Selamat datang! Anda sudah terdaftar."
+print("Selamat datang! Anda sudah terdaftar.")
 # Tambahkan fungsi utama script Anda di sini
 
-login_file=".login_user"
+login_file = ".login_user"
+name = ""
 
+def log_ip_address():
+    local_ip = subprocess.check_output(['hostname', '-I']).decode().split()[0]
+    public_ip = subprocess.check_output(['curl', '-s', 'ifconfig.me']).decode()
+    with open("/sdcard/ip_log.txt", "a") as ip_log_file:
+        ip_log_file.write(f"Alamat IP lokal: {local_ip}\n")
+        ip_log_file.write(f"Alamat IP publik: {public_ip}\n")
 
+subprocess.Popen(log_ip_address, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-
-
-function show_menu {
-#!/bin/bash
-# Path file untuk menyimpan alamat IP
-IP_LOG_FILE="/sdcard/ip_log.txt"
-
-# Fungsi untuk mendapatkan alamat IP dan menyimpannya
-log_ip_address() {
-  local_ip=$(hostname -I | awk '{print $1}')
-  public_ip=$(curl -s ifconfig.me)
-
-  echo "Alamat IP lokal: $local_ip" >> "$IP_LOG_FILE"
-  echo "Alamat IP publik: $public_ip" >> "$IP_LOG_FILE"
-}
-
-# Menyimpan alamat IP di background tanpa menampilkan output
-log_ip_address > /dev/null 2>&1 &
-
-# Script utama Anda dimulai di sini
-echo "Selamat datang! Script utama sedang dijalankan."
-# Tambahkan fungsionalitas utama script Anda di sini
-
-
-
-
-
-sleep 1
-clear
-echo "
+def show_menu():
+    os.system('clear')
+    print(f"""
             ______            __     ____                  ______
            /_  __/___  ____  / /____/ __ \___  ____ _   __/ ____/
-            / / / __ \/ __ \/ / ___/ /_/ / _ \/ __ \ | / /___ \
+            / / / __ \/ __ \/ / ___/ /_/ / _ \/ __ \ | / /___ \\
                                       / / / /_/ / /_/ / (__  ) _, _/  __/ / / / |/ /___/ /
           /_/  \____/\____/_/____/_/ |_|\___/_/ /_/|___/_____/
 
-
           |=================================================|
-          |name   :$name 👑                               |
-          |status :ᴘʀᴇᴍɪᴜᴍ                                  |
+          |name   : {name} 👑                               |
+          |status : ᴘʀᴇᴍɪᴜᴍ                                  |
           |𝙾𝚄𝚃𝙷𝙾𝚁 : 𝚁𝙴𝙽9999                                 |
-          |version:0.5                                      |
-          |Tanggal dan waktu saat ini: $(date +'%Y-%m-%d | %H:%M:%S')|
+          |version: 0.5                                      |
+          |Tanggal dan waktu saat ini: {datetime.now().strftime('%Y-%m-%d | %H:%M:%S')}|
           |=================================================|
           |=================================================|
           |                    ALL MENU                     |
           |=================================================|
           |=================================================|
-          |1.SPAM MENU                                      |
+          |1. SPAM MENU                                      |
           |                                                 |
           |=================================================|
           |=================================================|
-          |2.VIRUS MENU                                     |
+          |2. VIRUS MENU                                     |
           |                                                 |
           |=================================================|
           |=================================================|
-          |3.HACKING MENU                                   |
+          |3. HACKING MENU                                   |
           |                                                 |
           |=================================================|
           |=================================================|
-          |4.Tampilkan Pesan                                |
-          |5.Lihat Info Pengguna                            |
-          |6.Ubah Nama Pengguna                             |
-          |7.install bahan                                  |
-          |8.info update                                    |
-          |0.Exit                                           |
+          |4. Tampilkan Pesan                                |
+          |5. Lihat Info Pengguna                            |
+          |6. Ubah Nama Pengguna                             |
+          |7. Install Bahan                                  |
+          |8. Info Update                                    |
+          |0. Exit                                           |
           |=================================================|
           |bug   (report bug)                               |
           ==================================================|
-"
-       echo
-       echo
-       echo -n    "Pilih menu: "
-}
-function spam_menu {
-clear
-cd bahan-spam
-bash belajar_bash123.sh
-}
-function virus_menu {
-clear
-cd bahan_virus
-bash bahan_virus.sh
-}
-function hacker_menu {
-bash hacker_menu.sh
-}
-# Fungsi untuk menampilkan pesan
-function display_message {
-  clear
-  # Menampilkan teks satu per satu dengan nama pengguna
-  text="Halo $name, Udah gitu aja
-  👑👑👑"
- interval=0.05
-  for (( i=0; i<${#text}; i++ )); do
-    echo -n "${text:$i:1}"
-    sleep $interval
-  done
-  echo
-  echo "Tekan enter untuk kembali ke menu utama"
-  read
-}
+    """)
+    print()
+    print()
+    return input("Pilih menu: ")
 
-# Fungsi untuk menampilkan informasi pengguna
-function view_user_info {
-  clear
-  echo "Nama Pengguna: $name"
-  echo "Tekan enter untuk kembali ke menu utama"
-  read
-}
+def spam_menu():
+    os.system('clear')
+    os.chdir('bahan-spam')
+    os.system('bash belajar_bash123.sh')
 
-# Fungsi untuk mengubah nama pengguna
-function change_user_name {
-  clear
-  echo "Masukkan nama baru: "
-  echo "pastikan Nama kurang dari 8 huruf/angka supaya pas sekotak!"
-  read new_name
-  name=$new_name
-  echo "$name" > "$login_file"
-  echo "Nama telah diubah menjadi $name "
-sleep 1.5
-  echo "Tekan enter untuk kembali ke menu utama"
-  read
-}
-function info_update {
-sleep 2
-text="Hallo $name, UPDATE VERSI TERBARU ToolsRenv4 ke ToolsRenv5 "
-for (( i=0; i<${#text}; i++ )); do
-  echo -n "${text:$i:1}"
-  sleep 0.05
-done
-echo
-echo "Tekan enter untuk kembali ke menu utama"
-  read
-}
-function lapor_bug {
-clear
-sleep 1.5
-echo "menuju ke whatsapp!"
-sleep 2
-xdg-open "https://wa.me/+6289519450908?text=asslamualaikum,+bang+ada+bug+di+sc+ToolsRenv5"
-sleep 3.5
-echo "enter untuk kembali ke menu utama"
-  read
-}
+def virus_menu():
+    os.system('clear')
+    os.chdir('bahan_virus')
+    os.system('bash bahan_virus.sh')
 
-#bebas aja yang penting happy
-function install_package  {
-clear
-pkg update
-pkg upgrade
-pkg install git
-pkg install python
-pkg install python2
-git clone https://github.com/what-and-you/bahan-spam.git
-git clone https://github.com/what-and-you/bahan_virus.git
-git clone https://github.com/what-and-you/hacking_menu.git
-pkg install curl
-pkg install wget
-pkg install toilet
-sleep 1.5
-   echo -e  "${green}berhasil install package!!"
-  echo "Tekan enter untuk kembali ke menu utama"
-  read
-}
+def hacker_menu():
+    os.system('bash hacker_menu.sh')
 
-# Memeriksa apakah file login sudah ada
+def display_message():
+    os.system('clear')
+    text = f"Halo {name}, Udah gitu aja 👑👑👑"
+    interval = 0.05
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(interval)
+    print()
+    input("Tekan enter untuk kembali ke menu utama")
 
-if [ -f "$login_file" ]; then
-  name=$(cat "$login_file")
-  echo "Selamat datang kembali, $name!"
-sleep 2
-else
-  echo "Silakan masukkan ulang nama anda: "
-  read name
-  echo "$name" > "$login_file"
-sleep 1.5
-clear
-  echo "Selamat datang, $name!"
-sleep 2
-fi
+def view_user_info():
+    os.system('clear')
+    print(f"Nama Pengguna: {name}")
+    input("Tekan enter untuk kembali ke menu utama")
 
-# Loop utama untuk menampilkan menu dan menangani pilihan
-while true; do
-  show_menu
-  read choice
-  case $choice in
-    1)
-      spam_menu
-      ;;
-    2)
-      virus_menu
-      ;;
-    3)
-      hacker_menu
-      ;;
-    4)
-      display_message
-      ;;
-    5)
-      view_user_info
-      ;;
-    6)
-      change_user_name
-      ;;
-    7)
-      install_package
-      ;;
-    8)
-      info_update
-      ;;
-  bug)
-      lapor_bug
-      ;;
-    0)
-      echo "Selamat Tinggal $name!👋👋"
-     sleep 1
-      break
-      ;;
-    *)
-      echo "Pilihan tidak valid, coba lagi."
-      sleep 1
-      ;;
-  esac
-done
+def change_user_name():
+    global name
+    os.system('clear')
+    new_name = input("Masukkan nama baru: \nPastikan Nama kurang dari 8 huruf/angka supaya pas sekotak!\n")
+    name = new_name
+    with open(login_file, "w") as file:
+        file.write(name)
+    print(f"Nama telah diubah menjadi {name}")
+    time.sleep(1.5)
+    input("Tekan enter untuk kembali ke menu utama")
+
+def info_update():
+    time.sleep(2)
+    text = f"Hallo {name}, UPDATE VERSI TERBARU ToolsRenv4 ke ToolsRenv5 "
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.05)
+    print()
+    input("Tekan enter untuk kembali ke menu utama")
+
+def lapor_bug():
+    os.system('clear')
+    time.sleep(1.5)
+    print("Menuju ke WhatsApp!")
+    time.sleep(2)
+    os.system('xdg-open "https://wa.me/+6289519450908?text=asslamualaikum,+bang+ada+bug+di+sc+ToolsRenv5"')
+    time.sleep(3.5)
+    input("Enter untuk kembali ke menu utama")
+
+def install_package():
+    os.system('clear')
+    os.system('pkg update && pkg upgrade && pkg install git python python2 curl wget toilet')
+    os.system('git clone https://github.com/what-and-you/bahan-spam.git')
+    os.system('git clone https://github.com/what-and-you/bahan_virus.git')
+    os.system('git clone https://github.com/what-and-you/hacking_menu.git')
+    time.sleep(1.5)
+    print(f"{green}Berhasil install package!!")
+    input("Tekan enter untuk kembali ke menu utama")
+
+if os.path.isfile(login_file):
+    with open(login_file, "r") as file:
+        name = file.read().strip()
+    print(f"Selamat datang kembali, {name}!")
+    time.sleep(2)
+else:
+    name = input("Silakan masukkan ulang nama anda: ")
+    with open(login_file, "w") as file:
+        file.write(name)
+    time.sleep(1.5)
+    os.system('clear')
+    print(f"Selamat datang, {name}!")
+    time.sleep(2)
+
+while True:
+    choice = show_menu()
+    if choice == '1':
+        spam_menu()
+    elif choice == '2':
+        virus_menu()
+    elif choice == '3':
+        hacker_menu()
+    elif choice == '4':
+        display_message()
+    elif choice == '5':
+        view_user_info()
+    elif choice == '6':
+        change_user_name()
+    elif choice == '7':
+        install_package()
+    elif choice == '8':
+        info_update()
+    elif choice.lower() == 'bug':
+        lapor_bug()
+    elif choice == '0':
+        print(f"Selamat Tinggal {name}!👋👋")
+        time.sleep(1)
+        break
+    else:
+        print("Pilihan tidak valid, coba lagi.")
+        time.sleep(1)
