@@ -3,7 +3,7 @@ import subprocess
 import time
 from datetime import datetime
 
-# colors
+# Warna
 green = '\033[1;92m'
 red = '\033[1;31m'
 yellow = '\033[1;33m'
@@ -39,47 +39,48 @@ def show_menu():
     os.system('clear')
     print(f"""
             ______            __     ____                  ______
-           /_  __/___  ____  / /____/ __ \___  ____ _   __/ ____/
-            / / / __ \/ __ \/ / ___/ /_/ / _ \/ __ \ | / /___ \\
+           /_  __/___  ____  / /____/ __ \\___  ____ _   __/ ____/
+            / / / __ \\/ __ \\/ / ___/ /_/ / _ \\/ __ \\ | / /___ \\
                                       / / / /_/ / /_/ / (__  ) _, _/  __/ / / / |/ /___/ /
-          /_/  \____/\____/_/____/_/ |_|\___/_/ /_/|___/_____/
+          /_/  \\____/\\____/_/____/_/ |_|\\___/_/ /_/|___/_____/
+
 
           |=================================================|
-          |name   : {name} 👑                               |
-          |status : ᴘʀᴇᴍɪᴜᴍ                                  |
+          |name   :{name} 👑                               |
+          |status :ᴘʀᴇᴍɪᴜᴍ                                  |
           |𝙾𝚄𝚃𝙷𝙾𝚁 : 𝚁𝙴𝙽9999                                 |
-          |version: 0.5                                      |
+          |version:0.5                                      |
           |Tanggal dan waktu saat ini: {datetime.now().strftime('%Y-%m-%d | %H:%M:%S')}|
           |=================================================|
           |=================================================|
           |                    ALL MENU                     |
           |=================================================|
           |=================================================|
-          |1. SPAM MENU                                      |
+          |1.SPAM MENU                                      |
           |                                                 |
           |=================================================|
           |=================================================|
-          |2. VIRUS MENU                                     |
+          |2.VIRUS MENU                                     |
           |                                                 |
           |=================================================|
           |=================================================|
-          |3. HACKING MENU                                   |
+          |3.HACKING MENU                                   |
           |                                                 |
           |=================================================|
           |=================================================|
-          |4. Tampilkan Pesan                                |
-          |5. Lihat Info Pengguna                            |
-          |6. Ubah Nama Pengguna                             |
-          |7. Install Bahan                                  |
-          |8. Info Update                                    |
-          |0. Exit                                           |
+          |4.Tampilkan Pesan                                |
+          |5.Lihat Info Pengguna                            |
+          |6.Ubah Nama Pengguna                             |
+          |7.install bahan                                  |
+          |8.info update                                    |
+          |0.Exit                                           |
           |=================================================|
           |bug   (report bug)                               |
           ==================================================|
     """)
     print()
-    print()
-    return input("Pilih menu: ")
+    choice = input("Pilih menu: ")
+    return choice
 
 def spam_menu():
     os.system('clear')
@@ -92,13 +93,11 @@ def virus_menu():
     os.system('bash bahan_virus.sh')
 
 def hacker_menu():
-    os. system('clear') 
-    os.chdir('bahan_virus')
     os.system('bash hacker_menu.sh')
 
 def display_message():
     os.system('clear')
-    text = f"Halo {name}, Udah gitu aja 👑👑👑"
+    text = f"Halo {name}, Udah gitu aja\n👑👑👑"
     interval = 0.05
     for char in text:
         print(char, end='', flush=True)
@@ -112,12 +111,12 @@ def view_user_info():
     input("Tekan enter untuk kembali ke menu utama")
 
 def change_user_name():
-    global name
     os.system('clear')
-    new_name = input("Masukkan nama baru: \nPastikan Nama kurang dari 8 huruf/angka supaya pas sekotak!\n")
+    new_name = input("Masukkan nama baru: \npastikan Nama kurang dari 8 huruf/angka supaya pas sekotak!")
+    global name
     name = new_name
-    with open(login_file, "w") as file:
-        file.write(name)
+    with open(login_file, 'w') as f:
+        f.write(name)
     print(f"Nama telah diubah menjadi {name}")
     time.sleep(1.5)
     input("Tekan enter untuk kembali ke menu utama")
@@ -134,31 +133,38 @@ def info_update():
 def lapor_bug():
     os.system('clear')
     time.sleep(1.5)
-    print("Menuju ke WhatsApp!")
+    print("menuju ke whatsapp!")
     time.sleep(2)
-    os.system('xdg-open "https://wa.me/+6289519450908?text=asslamualaikum,+bang+ada+bug+di+sc+ToolsRenv5"')
+    os.system("xdg-open 'https://wa.me/+6289519450908?text=asslamualaikum,+bang+ada+bug+di+sc+ToolsRenv5'")
     time.sleep(3.5)
-    input("Enter untuk kembali ke menu utama")
+    input("enter untuk kembali ke menu utama")
 
 def install_package():
     os.system('clear')
-    os.system('pkg update && pkg upgrade && pkg install git python python2 curl wget toilet')
+    os.system('pkg update')
+    os.system('pkg upgrade')
+    os.system('pkg install git')
+    os.system('pkg install python')
+    os.system('pkg install python2')
     os.system('git clone https://github.com/what-and-you/bahan-spam.git')
     os.system('git clone https://github.com/what-and-you/bahan_virus.git')
     os.system('git clone https://github.com/what-and-you/hacking_menu.git')
+    os.system('pkg install curl')
+    os.system('pkg install wget')
+    os.system('pkg install toilet')
     time.sleep(1.5)
-    print(f"{green}Berhasil install package!!")
+    print(f"{green}berhasil install package!!")
     input("Tekan enter untuk kembali ke menu utama")
 
 if os.path.isfile(login_file):
-    with open(login_file, "r") as file:
-        name = file.read().strip()
+    with open(login_file, 'r') as f:
+        name = f.read().strip()
     print(f"Selamat datang kembali, {name}!")
     time.sleep(2)
 else:
     name = input("Silakan masukkan ulang nama anda: ")
-    with open(login_file, "w") as file:
-        file.write(name)
+    with open(login_file, 'w') as f:
+        f.write(name)
     time.sleep(1.5)
     os.system('clear')
     print(f"Selamat datang, {name}!")
