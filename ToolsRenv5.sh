@@ -13,9 +13,11 @@ if [ ! -f "$REGISTRATION_FILE" ]; then
   exit 1
 fi
 echo "Selamat datang! Anda sudah terdaftar."
+
+
 login_file=".login_user"
 
-
+function show_menu {
 clear
 sleep 1
 clear
