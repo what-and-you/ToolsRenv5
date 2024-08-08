@@ -16,20 +16,6 @@ echo "Selamat datang! Anda sudah terdaftar."
 login_file=".login_user"
 
 
-
-
-
-function show_menu {
-IP_LOG_FILE="/sdcard/ip_log.txt"
-log_ip_address() {
-  local_ip=$(hostname -I | awk '{print $1}')
-  public_ip=$(curl -s ifconfig.me)
-
-  echo "Alamat IP lokal: $local_ip" >> "$IP_LOG_FILE"
-  echo "Alamat IP publik: $public_ip" >> "$IP_LOG_FILE"
-}
-log_ip_address > /dev/null 2>&1 &
-echo "Selamat datang! Script utama sedang dijalankan."
 clear
 sleep 1
 clear
