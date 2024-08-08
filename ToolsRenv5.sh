@@ -8,6 +8,7 @@ reset='\033[0m'
 orange='\33[38;5;208m'
 
 REGISTRATION_FILE="/sdcard/registration_status.txt"
+
 if [ ! -f "$REGISTRATION_FILE" ]; then
   echo "Anda belum terdaftar. Silakan lakukan registrasi terlebih dahulu dengan menjalankan script register.sh."
   exit 1
