@@ -44,6 +44,4 @@ note  : kalo bisa buka enc nya gpp reqode aja😁
 
 HUBUNGI SAYA JIKA ADA MASALAH
 
-https://www.tiktok.com/@sistem9999
-
-<a href="https://chatgpt.com/c/421dceb2-0e0e-41a6-bfd0-c0f22844fd6a">Kunjungi Situs</a>
+<a href="https://www.tiktok.com/@sistem9999">kunjungi akun tiktok saya 🙋‍♂️</a>
