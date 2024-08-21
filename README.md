@@ -45,6 +45,9 @@ bash ToolsRenv5.sh
 
 # TERIMAKASIH BAGI YANG SUDAH MENGGUNAKAN TOOLS SAYA
 
+<marquee>Ini adalah teks yang bergerak!</marquee>
+
+
 outhor: REN9999
 
 note  : kalo bisa buka enc nya gpp reqode aja😁
