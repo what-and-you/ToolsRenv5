@@ -14,31 +14,34 @@
 
 
 # Cara Install ToolsRenv5
-
+```
 pkg update
-
+```
+```
 pkg upgrade
-
+```
+```
 pkg install python
-
+```
+```
 git clonne https://github.com/what-and-you/ToolsRenv5
-
+```
 # Untuk Run
 
 ```
 cd ToolsRenv5
 ```
-
 ```
 bash ToolsRenv5
 ```
 
 # untuk update script nya
-
+```
 git pull
-
+```
+```
 bash ToolsRenv5.sh
-
+```
 
 # TERIMAKASIH BAGI YANG SUDAH MENGGUNAKAN TOOLS SAYA
 
