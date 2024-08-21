@@ -32,7 +32,7 @@ git clonne https://github.com/what-and-you/ToolsRenv5
 cd ToolsRenv5
 ```
 ```
-bash ToolsRenv5
+bash ToolsRenv5.sh
 ```
 
 # untuk update script nya
@@ -44,11 +44,6 @@ bash ToolsRenv5.sh
 ```
 
 # TERIMAKASIH BAGI YANG SUDAH MENGGUNAKAN TOOLS SAYA
-
-<marquee direction="left" scrollamount="10">Teks bergerak ke kiri dengan kecepatan tinggi!</marquee>
-<marquee direction="right" scrollamount="2">Teks bergerak ke kanan dengan kecepatan lambat.</marquee>
-
-
 
 outhor: REN9999
 
