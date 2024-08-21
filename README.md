@@ -45,7 +45,9 @@ bash ToolsRenv5.sh
 
 # TERIMAKASIH BAGI YANG SUDAH MENGGUNAKAN TOOLS SAYA
 
-<marquee>Ini adalah teks yang bergerak!</marquee>
+<marquee direction="left" scrollamount="10">Teks bergerak ke kiri dengan kecepatan tinggi!</marquee>
+<marquee direction="right" scrollamount="2">Teks bergerak ke kanan dengan kecepatan lambat.</marquee>
+
 
 
 outhor: REN9999
