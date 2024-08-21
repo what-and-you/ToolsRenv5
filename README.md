@@ -25,9 +25,13 @@ git clonne https://github.com/what-and-you/ToolsRenv5
 
 # Untuk Run
 
+```
 cd ToolsRenv5
+```
 
+```
 bash ToolsRenv5
+```
 
 # untuk update script nya
 
