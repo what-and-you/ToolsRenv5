@@ -50,4 +50,4 @@ note  : kalo bisa buka enc nya gpp reqode aja😁
 
 HUBUNGI SAYA JIKA ADA MASALAH
 
-<a href="https://www.tiktok.com/@sistem9999">kunjungi akun tiktok saya 🙋‍♂️</a>
+<a href="https://www.tiktok.com/@sistem9999">https://i.top4top.io/p_31543nt391.jpg 🙋‍♂️</a>
